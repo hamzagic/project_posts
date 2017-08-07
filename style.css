@@ -1,0 +1,30 @@
+.profile-body {
+
+margin: 0 auto;
+padding: 0;
+margin-top: 30px;
+width: 50%;
+height: 90%;
+background-color: #e5e6e5;
+border: 1px solid silver;
+
+}
+
+.placement{
+
+	
+	margin-left: 400px;
+	margin-right: 400px;
+}
+
+#bt-post{
+
+	margin-top: 10px;
+}
+
+.posts{
+
+	font-family: verdana;
+	font-size: 20px;
+}
+
