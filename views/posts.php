@@ -8,20 +8,29 @@
   <input type="text" class="form-control" id="usr" name="usr" placeholder="Username"><br>
   <textarea class="form-control" rows="3" id="msg" name="msg" placeholder="Write your post"></textarea>
   <div class="form-group">
-    <button type="submit" class="btn btn-primary" name="submitPost" id="bt-post">Submit</button>
+  <input type="hidden" name="post" id="post" value="posted">
+    <button type="submit" class="btn btn-primary" name="submit" id="bt-post">Submit</button>
 </form>
 <hr>
 <div class="posts">
 
    
-<script type="text/javascript" src="controllers/scripts.js"></script>
+
 <?php
 
   $post = new SignLogin();
   $post->displayPost();
+
+  if (isset($_POST['post'])) {
+     if ($_POST['post'] == 'posted') {
+      
+       $user = new SignLogin();   
+       $user->writePost();
+     }
+
+  }
   
-  //$user = new SignLogin();   
-  //$user->writePost();
+  
 
 
 ?>

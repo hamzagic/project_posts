@@ -25,10 +25,10 @@ if (isset($_GET['page'])) {
 
 
 
-$user = new SignLogin();
+/*$user = new SignLogin();
 if (isset($_POST['submit'])) {
 	$user->signUp();
 }
-
+*/
 
 ?>

@@ -14,7 +14,7 @@ Profile Image:
   </div>
  <!-- end of thumbnail code--> 
 </div>
-<form class="form-horizontal">
+<form class="form-horizontal" method="post" action="">
   <div class="form-group">
     <label for="inputfname" class="col-sm-2 control-label">First Name</label>
     <div class="col-sm-10">
@@ -59,7 +59,9 @@ Profile Image:
   </div>
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-primary">Sign in</button>
+      <button type="submit" class="btn btn-primary" value="profile" id="prof">Update</button>
+      
+
     </div>
   </div>
 </form>
