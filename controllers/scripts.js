@@ -23,3 +23,15 @@ $(document).ready(function(){
 
 	
 })
+
+$(document).ready(function(){
+
+	$("#bt-post").click(function(){
+
+		alert ("button clicked");
+
+	})
+
+
+})
+

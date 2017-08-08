@@ -64,6 +64,7 @@ class SignLogin extends Database{
 	private $name;
 	private $email;
 	private $msg;
+	private $username;
 
 		public function signUp(){
 
@@ -103,24 +104,32 @@ class SignLogin extends Database{
 
 		public function writePost(){
 
+				//if (isset($_POST['submitPost'])) {
+					//if ($_POST['submitPost']) {
+
+						$this->username = $username;
+						$this->msg = $msg;
+						
+
+						$username = mysqli_real_escape_string($this->con, $_POST['username']);
+						$msg = mysqli_real_escape_string($this->con, $_POST['msg']);
+
+						$query = "INSERT INTO tb_posts (username, msg) VALUES (?, ?)";
+
+						$stmt = $this->con->prepare($query);
+						$stmt->bind_param('ss', $username, $msg);
+						$stmt->execute();
+
+						if (!$stmt) {
+							echo "An error occurred.";
+						}
+
+					//}
+				//}
+
+					
 			
-					$this->msg = $msg;
-					$this->email = $email;
-
-					$email = mysqli_real_escape_string($this->con, $_POST['email']);
-					$msg = mysqli_real_escape_string($this->con, $_POST['msg']);
-
-					$query = "INSERT INTO tb_posts (email, msg) VALUES (?, ?)";
-
-					$stmt = $this->con->prepare($query);
-					$stmt->bind_param('ss', $email, $msg);
-					$stmt->execute();
-
-					if (!$stmt) {
-						echo "An error occurred.";
-					}
-			
-		}
+	}
 		
 }
 
