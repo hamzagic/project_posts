@@ -15,8 +15,12 @@
       <div class="modal-body">
       <form method="post" action="">
       <input type="hidden" id="hid" name="hid" value="1">
-        <label for="recipient-name" class="control-label">Name:</label>
-        <input type="text" class="form-control" name="name" id="name">
+        <label for="recipient-name" class="control-label" id="fname-label">First Name:</label>
+        <input type="text" class="form-control" name="fname" id="fname">
+        <label for="recipient-name" class="control-label" id="lname-label">Last Name:</label>
+        <input type="text" class="form-control" name="lname" id="lname">
+        <label for="recipient-name" class="control-label" id="usr-label">Username:</label>
+        <input type="text" class="form-control" name="username" id="username">
         <label for="recipient-email" class="control-label">Email:</label>
         <input type="email" class="form-control" name="email" id="email">
         <label for="recipient-password" class="control-label">Password:</label>
@@ -54,6 +58,22 @@
 </form>
 </div>
 </div>-->
+
+<?php
+
+if (isset($_GET['actions'])) {
+  if ($_GET['actions'] == 'signup') {
+
+    echo "signup echoed";
+    
+    //$signup = new signLogin();
+    //$signup->signUp2();
+
+  }
+}
+
+
+?>
 
   </body>
 </html>

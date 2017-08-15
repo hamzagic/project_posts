@@ -36,14 +36,14 @@ class Users extends Database{
 		
 	
 
-	public function insert($name, $email){
+	public function insert($uname, $email){
 
-		$query = "INSERT INTO tb_login (name, email) VALUES (?, ?)";
+		$query = "INSERT INTO tb_login (username, email) VALUES (?, ?)";
 
 		$stmt = $this->con->prepare($query);
 		//$email = $this->email;
 		//$name = $this->name;
-		$stmt->bind_param('ss', $name, $email);
+		$stmt->bind_param('ss', $uname, $email);
 		$stmt->execute();
 
 
@@ -61,11 +61,95 @@ class Users extends Database{
 class SignLogin extends Database{
 
 	//signup, login and post 
-	private $name;
+	//private $name;
 	private $email;
 	private $msg;
 	private $username;
+	private $fname;
+	private $lname;
+	private $pass;
+	private $id;
 
+
+		public function signUp2(){
+
+			$this->fname = $fname;
+			$this->lname = $lname;	
+			$this->username = $username;
+			$this->email = $email;
+			$this->pass = $pass;
+			$this->pass2 = $pass2;
+
+			//$username = mysqli_real_escape_string($this->con, $_POST['username']);
+			$email = mysqli_real_escape_string($this->con, $_POST['email']);
+
+			//verify if email already exists
+			$verEmail = "SELECT * FROM tb_login WHERE email = '$email'";
+			$stmt = $this->con->prepare($verEmail);
+			$stmt->execute();
+			$stmt->store_result();
+			if ($stmt->num_rows >= '1') {
+				echo "This email already exists";
+				return false;
+			} else {
+				//set hash password
+				$pass = mysqli_real_escape_string($this->con, $_POST['pass']);
+				$pass2 = password_hash($pass, PASSWORD_DEFAULT);
+
+				//get data from form
+				$fname = mysqli_real_escape_string($this->con, $_POST['fname']);
+				$lname = mysqli_real_escape_string($this->con, $_POST['lname']);
+				$username = mysqli_real_escape_string($this->con, $_POST['username']);
+				$email = mysqli_real_escape_string($this->con, $_POST['email']);
+
+				//insert data to tb_profile
+				$query = "INSERT INTO tb_profile (fname, lname, username, email, pass) VALUES (?, ?, ?, ?, ?)";
+
+				$stmt = $this->con->prepare($query);
+				$stmt->bind_param('sssss', $fname, $lname, $username, $email, $pass2);
+				$stmt->execute();
+
+				if (!$stmt) {
+					//header('Location: index.php');
+					echo "Could not sign up";
+				} else{
+
+					echo "1";
+				}
+
+
+			}
+
+
+		}
+
+
+		public function login(){
+
+			$this->pass2 = $pass2;
+			$this->email = $email;
+
+			$query = "SELECT * FROM tb_login WHERE email = '$email'";
+			$stmt = $this->con->prepare($query);
+			$stmt->execute();
+			$stmt->store_result();
+			$stmt->fetch_assoc();
+
+
+			if($stmt->num_rows = 1){
+
+				$hash = mysqli_real_escape_string($this->con, $_POST['pass']);
+
+				if (password_verify($pass2, $hash)) {
+					echo 1;
+				} else {
+
+					echo "Your email or password is not valid. Please try again.";
+				}
+			}
+
+
+		}
 		public function signUp(){
 
 					
@@ -131,14 +215,52 @@ class SignLogin extends Database{
 						} 
 
 						echo "posted";
-					//}
-					
-				
+					//}		
+		}
 
-					
-			
-		
-		
+		public function editProfile(){
+
+				$this->fname = $fname;
+				$this->lname = $lname;							
+				$this->username = $username;
+				//$this->email = $email;
+				$this->pass = $pass;
+				$this->id = $id;
+
+
+				$fname = mysqli_real_escape_string($this->con, $_POST['fname']);
+				$lname = mysqli_real_escape_string($this->con, $_POST['lname']);
+				$username = mysqli_real_escape_string($this->con, $_POST['username']);
+				//$email = mysqli_real_escape_string($this->con, $_POST['email']);
+				$pass = mysqli_real_escape_string($this->con, $_POST['pass']);
+				$id = mysqli_real_escape_string($this->con, $_SESSION['id']);
+
+				$query1 = "SELECT fname, lname, username, pass FROM tb_profile WHERE id = ? LIMIT 1";
+
+				$stmt = $this->con->prepare($query1);
+				$stmt->bind_param('s', $id);
+				$stmt->execute();
+
+				if(!$stmt){
+
+					echo "error";
+					return false;
+
+				} else {
+
+
+					$query2 = "UPDATE tb_profile SET fname = $fname, lname = $lname, usename = $username, pass = $pass WHERE id = $id";
+					$stmt = $this->con->prepare($query2);
+					$stmt->execute();
+
+					if(!$stmt){
+
+						echo "not done";
+						return false;
+					}
+				}
+
+
 		}
 }
 
