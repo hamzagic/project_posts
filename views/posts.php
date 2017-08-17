@@ -9,7 +9,7 @@
   <textarea class="form-control" rows="3" id="msg" name="msg" placeholder="Write your post"></textarea>
   <div class="form-group">
   <input type="hidden" name="post" id="post" value="posted">
-    <button type="submit" class="btn btn-primary" name="submit" id="bt-post">Submit</button>
+    <button class="btn btn-primary" name="submit" id="bt-post">Submit</button>
 </form>
 <hr>
 <div class="posts">

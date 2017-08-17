@@ -95,7 +95,10 @@ class SignLogin extends Database{
 			} else {
 				*/
 
-				if ($_POST['submit'] == "1") {
+				if ($_POST['sign'] == "signup") {
+					
+						# code...
+					
 					# code...
 				
 				//set hash password
@@ -124,16 +127,21 @@ class SignLogin extends Database{
 					$stmt = $this->con->prepare($query);
 					$stmt->bind_param('sssss', $fname, $lname, $username, $email, $pass);
 					$stmt->execute();
+					//$result = $stmt->store_result();
+					//$stmt->bind_result($result);
 					
+
 						if (!$stmt) {
 							//header('Location: index.php');
 							echo "Could not sign up";
-						} else {
 
+						} else {
+														
 							echo "11";
+							
 						  }
 
-				   //}
+				  // }
 			}
 
 

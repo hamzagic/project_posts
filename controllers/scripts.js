@@ -56,13 +56,12 @@ $(document).ready(function(){
 			type: "POST",
 			url: "models/Users.php?action=posted",
 			data: pData,
-			success: function(data){
+			success: function(){
 
-				if (data == "1") {
+					window.location.assign('index.php?page=posts');
 
-					window.location.assign('index.php?page=feed');
 				}	
-			}
+			
 		})
 
 
@@ -106,20 +105,18 @@ $(document).ready(function(){
 				type: "POST",
 				url: "models/Users.php?action=signup",
 				data: signupData,
-				success: function(data){
+				success: function(){
 
-					if (data == "11") {
-						alert(signupData);
-						//window.location.assign('index.php?page=profile');
+					
+						//alert(signupData.email);
+						window.location.assign('index.php?page=profile');
 						
 
-					} else {
 
-							$('#errors').html(data).css("visibility", "visible");
-							
+					}
 
-					  }
-					}			
+
+				//}			
 
 			})
 

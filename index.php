@@ -24,7 +24,7 @@ if (isset($_GET['page'])) {
 }
 
 
-//<?php
+
 //if (isset($_GET['action'])) {
 	//if ($_GET['action'] == 'signup') {
 

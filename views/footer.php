@@ -32,9 +32,9 @@
       </div>
       <div class="modal-footer">
         <a id="toggle"> Log In </a>
-        
+        <input type="hidden" name="sign" id="sign" value="signup">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" name="submit" value="1" id="login3">Sign Up</button>
+        <button class="btn btn-primary" name="submit" value="1" id="login3">Sign Up</button>
       </div>
       </form>
     </div><!-- /.modal-content -->
