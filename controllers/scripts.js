@@ -15,6 +15,7 @@ $(document).ready(function(){
 		$("#fname-label").hide();
 		$("#lname-label").hide();
 		$("#usr-label").hide();
+		
 
 		} else {
 
@@ -28,6 +29,7 @@ $(document).ready(function(){
 		$("#fname-label").show();
 		$("#lname-label").show();
 		$("#usr-label").show();
+		
 
 		}
 
@@ -42,11 +44,11 @@ $(document).ready(function(){
 
 		console.log ("button clicked");
 
-		var username = $("#usr").val();
+		var username = $("#username").val();
 		var msg = $("#msg").val();
 		var btn = $("#post").val();
 
-		var pData = {usr: username, msg: msg, btn: btn};
+		var pData = {username: username, msg: msg, btn: btn};
 
 
 		$.ajax({
@@ -82,7 +84,7 @@ $(document).ready(function(){
 //signup data
 $(document).ready(function(){
 
-	$('#login2').click(function(){
+	$('#login3').click(function(){
 
 		
 		if ($('#hid').val() == '1') {
@@ -94,35 +96,35 @@ $(document).ready(function(){
 			var username = $('#username').val();
 			var email = $('#email').val();
 			var pass = $('#pass').val();
+			var status = $('#hid').val();
 
-			var signupData = {fname: fname, lname: lname, username: username, email: email, pass: pass};
+
+			var signupData = {fname: fname, lname: lname, username: username, email: email, pass: pass, toggle:status};
 
 			$.ajax({
 
 				type: "POST",
-				url: "models/Users.php?actions=signup",
+				url: "models/Users.php?action=signup",
 				data: signupData,
 				success: function(data){
 
-					if (data) {
-
-						alert('ok');
-						window.location.assign('index.php?page=profile');
+					if (data == "11") {
+						alert(signupData);
+						//window.location.assign('index.php?page=profile');
 						
 
 					} else {
 
-						alert("not 1");
-					}
+							$('#errors').html(data).css("visibility", "visible");
+							
 
-
-
-					
-				}
-
+					  }
+					}			
 
 			})
+
 		}
+
 	})
 
 })

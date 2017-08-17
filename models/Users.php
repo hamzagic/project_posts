@@ -78,11 +78,12 @@ class SignLogin extends Database{
 			$this->username = $username;
 			$this->email = $email;
 			$this->pass = $pass;
-			$this->pass2 = $pass2;
+			//$this->pass2 = $pass2;
 
 			//$username = mysqli_real_escape_string($this->con, $_POST['username']);
-			$email = mysqli_real_escape_string($this->con, $_POST['email']);
+			//$email = mysqli_real_escape_string($this->con, $_POST['email']);
 
+			/*
 			//verify if email already exists
 			$verEmail = "SELECT * FROM tb_login WHERE email = '$email'";
 			$stmt = $this->con->prepare($verEmail);
@@ -92,32 +93,47 @@ class SignLogin extends Database{
 				echo "This email already exists";
 				return false;
 			} else {
+				*/
+
+				if ($_POST['submit'] == "1") {
+					# code...
+				
 				//set hash password
-				$pass = mysqli_real_escape_string($this->con, $_POST['pass']);
-				$pass2 = password_hash($pass, PASSWORD_DEFAULT);
+				//$pass = mysqli_real_escape_string($this->con, $_POST['pass']);
+				//$pass2 = password_hash($pass, PASSWORD_DEFAULT);	
+
+				//if ($_POST['fname'] == "") {
+						//echo "All fields are required";
+						
+					//} else {
 
 				//get data from form
 				$fname = mysqli_real_escape_string($this->con, $_POST['fname']);
 				$lname = mysqli_real_escape_string($this->con, $_POST['lname']);
 				$username = mysqli_real_escape_string($this->con, $_POST['username']);
 				$email = mysqli_real_escape_string($this->con, $_POST['email']);
+				$pass = mysqli_real_escape_string($this->con, $_POST['pass']);
 
-				//insert data to tb_profile
-				$query = "INSERT INTO tb_profile (fname, lname, username, email, pass) VALUES (?, ?, ?, ?, ?)";
+									
+					
 
-				$stmt = $this->con->prepare($query);
-				$stmt->bind_param('sssss', $fname, $lname, $username, $email, $pass2);
-				$stmt->execute();
+				 
 
-				if (!$stmt) {
-					//header('Location: index.php');
-					echo "Could not sign up";
-				} else{
+					//insert data to tb_profile
+					$query = "INSERT INTO tb_profile (fname, lname, username, email, pass) VALUES (?, ?, ?, ?, ?)";
+					$stmt = $this->con->prepare($query);
+					$stmt->bind_param('sssss', $fname, $lname, $username, $email, $pass);
+					$stmt->execute();
+					
+						if (!$stmt) {
+							//header('Location: index.php');
+							echo "Could not sign up";
+						} else {
 
-					echo "1";
-				}
+							echo "11";
+						  }
 
-
+				   //}
 			}
 
 
@@ -263,5 +279,7 @@ class SignLogin extends Database{
 
 		}
 }
+
+
 
 ?>

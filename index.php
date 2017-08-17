@@ -24,6 +24,20 @@ if (isset($_GET['page'])) {
 }
 
 
+//<?php
+//if (isset($_GET['action'])) {
+	//if ($_GET['action'] == 'signup') {
+
+	    //echo "signup echoed";
+	    
+	    $signup = new SignLogin();
+	    $signup->signUp2();
+	    echo "hey";
+	//}
+//}
+
+
+
 
 /*$user = new SignLogin();
 if (isset($_POST['submit'])) {

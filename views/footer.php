@@ -10,7 +10,11 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        
         <h4 class="modal-title" id="title">Sign Up</h4>
+      </div>
+      <div class="alert alert-danger" role="alert" id="errors" style="visibility: hidden;">
+        
       </div>
       <div class="modal-body">
       <form method="post" action="">
@@ -28,8 +32,9 @@
       </div>
       <div class="modal-footer">
         <a id="toggle"> Log In </a>
+        
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" name="submit" id="login2">Sign Up</button>
+        <button type="submit" class="btn btn-primary" name="submit" value="1" id="login3">Sign Up</button>
       </div>
       </form>
     </div><!-- /.modal-content -->
@@ -59,21 +64,7 @@
 </div>
 </div>-->
 
-<?php
 
-if (isset($_GET['actions'])) {
-  if ($_GET['actions'] == 'signup') {
-
-    echo "signup echoed";
-    
-    //$signup = new signLogin();
-    //$signup->signUp2();
-
-  }
-}
-
-
-?>
 
   </body>
 </html>
